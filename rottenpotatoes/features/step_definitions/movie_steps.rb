@@ -6,5 +6,6 @@ end
 
 Then /^the director of "(.+)" should be "(.+)"/ do |movie_name, director|
   movie = Movie.find_by(title: movie_name)
-  expect(movie.director).to eql(director)
+  visit movie_path(movie)
+  expect(page.body).to match(/Director:\s#{director}/)
 end
